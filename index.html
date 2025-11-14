@@ -23,48 +23,30 @@
 </head>
 
 <body>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-3">
-                <h3 id="header">
-                    <a href="/"><img src="https://avatars.githubusercontent.com/u/153049230?s=320&v=4"
-                            style="width: 100px; min-width: 100px; max-width: 100px; border-radius: 0.3em;" /></a>
-                    <br />
-                    Find the <br /><span class="yin">yin</span> &amp; <span class="yang">yang</span><br />of an image
-                </h3>
-            </div>
-            <div class="col-md-9">
-                <input id="yinyangUrl" type="text" value="" size="32" placeholder="Image URL..." />
-                <br />
-                <div id="inputDiv">
-                    <div id="keyDiv" style="display: none;">
-                        <span style="font-size: 85%; font-style: italic;">
-                            <span>
-                                <span id="sklCont">
-                                    <input type="checkbox" id="storeKeyLocally" /> save key <b>
-                                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
-                                            target="_blank">locally</a></b> for easy reuse.
-                                </span>
-                            </span>
-                        </span>
-                        <br />
-                        <input id="openaiKey" type="text" size="32"
-                            value="78e74446041c490996d087c5af270f6cca9ed7a57f264a219e0125a3c57057e1" />
-                        <br />
-                        <span style="font-size: 85%; font-style: italic;">
-                            never logged or stored server-side:
-                            <a href="https://github.com/image-yinyang/public/blob/0b1627e3f931bb809b521537472802b2ffbf3ac0/src/index.js#L38-L49"
-                                target="_blank">see for
-                                yourself.</a>
-                        </span>
+    <div class="grid-overlay"></div>
+    <div class="main-card">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-section">
+                        <a href="/"><img src="https://avatars.githubusercontent.com/u/153049230?s=320&v=4"
+                                class="logo-img" /></a>
+                        <h3 id="header">
+                            Find the<br /><span class="yin">yin</span> <span class="divider">&amp;</span> <span class="yang">yang</span><br />of an image
+                        </h3>
                     </div>
-                    <div style="margin-top: 2vh;">
-                        <label for="thresMod" id="thresModLabel">neutral</label>
-                        <br />
-                        <input type="range" id="thresMod" name="thresMod" min="-3" max="3" value="0" step="1" />
-                        <br />
-                        <button id="yinyang">🖼️☯️</button>
-                        <div id="metadata"></div>
+                </div>
+                <div class="col-md-9">
+                    <div class="input-section">
+                        <input id="yinyangUrl" type="text" value="" size="32" placeholder="Image URL..." />
+                        <div id="inputDiv">
+                            <div class="controls">
+                                <label for="thresMod" id="thresModLabel" class="threshold-label">neutral</label>
+                                <input type="range" id="thresMod" name="thresMod" min="-3" max="3" value="0" step="1" />
+                                <button id="yinyang" class="cyber-button">🖼️☯️</button>
+                                <div id="metadata"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,38 +54,46 @@
     </div>
 
     <div id="sourceDiv">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <a id="yinyangUrlRO" href=""><img id="sourceImage" src="" /></a>
-                </div>
-                <div class="col">
-                    <div id="imageDesc" class="promptText" style="vertical-align: middle;">
-                        <div class="spinner-border text-info" role="status">
-                            <span class="visually-hidden">...</span>
+        <div class="results-card">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="source-image-container">
+                            <a id="yinyangUrlRO" href=""><img id="sourceImage" src="" /></a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="imageDesc" class="promptText description-box">
+                            <div class="spinner-border text-info" role="status">
+                                <span class="visually-hidden">...</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="footer"></div>
+            <div class="separator"></div>
 
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <a id="badImageLink" target="_blank">
-                        <img id="badImage" class="yyImage"
-                            src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif" />
-                    </a>
-                    <div id="badPrompt" class="yin promptText"></div>
-                </div>
-                <div class="col">
-                    <a id="goodImageLink" target="_blank">
-                        <img id="goodImage" class="yyImage"
-                            src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif" />
-                    </a>
-                    <div id="goodPrompt" class="yang promptText"></div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="result-container yin-container">
+                            <a id="badImageLink" target="_blank">
+                                <img id="badImage" class="yyImage"
+                                    src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif" />
+                            </a>
+                            <div id="badPrompt" class="yin promptText"></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="result-container yang-container">
+                            <a id="goodImageLink" target="_blank">
+                                <img id="goodImage" class="yyImage"
+                                    src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif" />
+                            </a>
+                            <div id="goodPrompt" class="yang promptText"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,24 +101,26 @@
 
     <div class="container text-center">
         <div id="footer" class="footer">
-            powered by
-            <a href="https://platform.openai.com/docs/guides/vision" target="_blank" hx-trigger="load"
-                hx-get="https://api.yinyang.computerpho.be/model/imageToTextModel" hx-swap="innerHTML">...</a> for
-            image analysis,
-            <a href="https://developers.cloudflare.com/workers-ai/models#text-classification" target="_blank"
-                hx-trigger="load" hx-get="https://api.yinyang.computerpho.be/model/textClassificationModel"
-                hx-swap="innerHTML">...</a>
-            for text classification &amp;
-            <a href="https://developers.cloudflare.com/workers-ai/models/#text-to-image" target="_blank"
-                hx-trigger="load" hx-get="https://api.yinyang.computerpho.be/model/textToImageModel"
-                hx-swap="innerHTML">...</a> for text-to-image.
-            <br /><br />
-            <a href="https://github.com/image-yinyang" target="_blank">an</a>
-            <a href="https://github.com/edfletcher" target="_blank">ed fletcher</a> joint.
+            <div class="footer-content">
+                powered by
+                <a href="https://platform.openai.com/docs/guides/vision" target="_blank" hx-trigger="load"
+                    hx-get="https://api.yinyang.computerpho.be/model/imageToTextModel" hx-swap="innerHTML">...</a> for
+                image analysis,
+                <a href="https://developers.cloudflare.com/workers-ai/models#text-classification" target="_blank"
+                    hx-trigger="load" hx-get="https://api.yinyang.computerpho.be/model/textClassificationModel"
+                    hx-swap="innerHTML">...</a>
+                for text classification &amp;
+                <a href="https://developers.cloudflare.com/workers-ai/models/#text-to-image" target="_blank"
+                    hx-trigger="load" hx-get="https://api.yinyang.computerpho.be/model/textToImageModel"
+                    hx-swap="innerHTML">...</a> for text-to-image.
+                <br /><br />
+                <a href="https://github.com/image-yinyang" target="_blank">an</a>
+                <a href="https://github.com/edfletcher" target="_blank">ed fletcher</a> joint.
+            </div>
         </div>
     </div>
     <div class="container text-center">
-        <div id="reqId" style="font-size: 80%; color: #888888; display: none;">
+        <div id="reqId" class="request-id">
             request ID: <a href="" id="reqIdLink"></a>
         </div>
     </div>
