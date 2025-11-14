@@ -422,7 +422,9 @@ a:visited {
 }
 
 #imageDesc span {
-    padding-right: 0.3rem;
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.3rem;
 }
 
 /* Loading spinner customization */
