@@ -99,7 +99,8 @@ body {
     padding: 1rem;
 }
 
-#yinyangUrl {
+#yinyangUrl,
+#openaiKey {
     width: 100%;
     max-width: 500px;
     padding: 0.8rem 1.2rem;
@@ -113,14 +114,48 @@ body {
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
 }
 
-#yinyangUrl:focus {
+#yinyangUrl:focus,
+#openaiKey:focus {
     outline: none;
     border-color: rgba(0, 212, 255, 0.8);
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
-#yinyangUrl::placeholder {
+#yinyangUrl::placeholder,
+#openaiKey::placeholder {
     color: #6b7280;
+}
+
+#openaiKey:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Checkbox styling */
+#sklCont {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+#sklCont label {
+    margin-left: 0.4rem;
+    cursor: pointer;
+}
+
+#storeKeyLocally {
+    cursor: pointer;
+    accent-color: #00d4ff;
+}
+
+#sklCont a {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+#sklCont a:hover {
+    color: #00d4ff;
 }
 
 /* Controls */
