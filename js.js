@@ -27,7 +27,7 @@ function _updatePrompts(resultBody) {
   }
   sentences.forEach(({ sentence, sentiment: { good } }) => {
     const ele = document.createElement("span");
-    ele.style.color = good ? "white" : "black";
+    ele.style.color = good ? "#d946ef" : "#00d4ff";
     ele.innerText = sentence + ".";
     imageDesc.appendChild(ele);
   });
