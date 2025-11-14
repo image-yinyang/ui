@@ -49,14 +49,6 @@ async function loader(reqIdParam, _event) {
   sourceDiv.style.display = "block";
   sourceDiv.style.visibility = "visible";
   document.getElementById("thresMod").disabled = true;
-  const oaiKeyEle = document.getElementById("openaiKey");
-  const openaiKey = oaiKeyEle.value;
-  if (document.getElementById("storeKeyLocally").checked) {
-    window.localStorage.setItem("openaiKey", openaiKey);
-  }
-
-  oaiKeyEle.parentElement.parentElement.removeChild(oaiKeyEle.parentElement);
-
   document.getElementById("sourceImage").src = imageUrl;
   document.title = `⏳${document.title}`;
   const url = `https://${API_HOST}/${reqIdParam ?? ""}`;
@@ -68,7 +60,7 @@ async function loader(reqIdParam, _event) {
         method: "POST",
         body: imageUrl,
         headers: {
-          "X-Yinyang-OpenAI-Key": openaiKey,
+          "X-Yinyang-OpenAI-Key": "78e74446041c490996d087c5af270f6cca9ed7a57f264a219e0125a3c57057e1",
           "X-Yinyang-Threshold-Mod":
             document.getElementById("thresMod").value,
         },
@@ -148,15 +140,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
     e.target.select();
   });
 
-  document.getElementById("openaiKey").addEventListener("change", (e) => {
-    if (
-      (e.target.value.length === 51 && e.target.value.indexOf("sk-") === 0) ||
-      e.target.value.length === 64
-    ) {
-      document.getElementById("yinyang").disabled = false;
-    }
-  });
-
   document.getElementById("thresMod").addEventListener("change", (e) => {
     document.getElementById("thresModLabel").innerText =
       MOD_LABELS[Number.parseInt(e.target.value) + Number.parseInt(e.target.max)];
@@ -165,30 +148,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   document
     .getElementById("yinyang")
     .addEventListener("click", loader.bind(null, null));
-
-  if (window.localStorage.getItem("openaiKey")) {
-    const oaiKeyEle = document.getElementById("openaiKey");
-    oaiKeyEle.value = window.localStorage.getItem("openaiKey");
-    oaiKeyEle.disabled = true;
-    const sklEle = document.getElementById("storeKeyLocally");
-    sklEle.checked = true;
-    sklEle.disabled = true;
-    const sklCont = document.getElementById("sklCont");
-    const rmBut = document.createElement("a");
-    rmBut.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.localStorage.removeItem("openaiKey");
-      sklEle.checked = false;
-      sklEle.disabled = false;
-      oaiKeyEle.value = "";
-      oaiKeyEle.disabled = false;
-      rmBut.parentElement.removeChild(rmBut);
-    });
-    rmBut.innerText = "(Clear stored key)";
-    rmBut.href = "";
-    sklCont.appendChild(rmBut);
-    document.getElementById("yinyang").disabled = false;
-  }
 
   const { searchParams } = new URL(window.location.href);
   const reqParam = searchParams.get("req");
